@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+ 
+        <!-- hibernate dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+ 
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/HMS</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">3949</property>
+        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+ 
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+ 
+        <!-- ############################################ -->
+        <!-- # mapping files with external dependencies # -->
+        <!-- ############################################ -->
+ 
+         <mapping resource="com/persistence/Login.hbm.xml" />
+        <mapping resource="com/persistence/Patient.hbm.xml" />
+        <mapping resource="com/persistence/Doctor.hbm.xml" />
+        <mapping resource="com/persistence/Appointment.hbm.xml" />
+ 
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.persistence.Patient" table="Patient">
+	
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		
+		<property name="firstName">
+			<column name="FirstName" />
+		</property>
+		
+		<property name="lastName">
+			<column name="LastName"/>
+		</property>
+		
+		<property name="gender">
+			<column name="Gender" />
+		</property>
+		
+		<property name="dob">
+			<column name="DOB"/>
+		</property>
+		
+		<property name="address">
+			<column name="Address"/>
+		</property>
+		
+		<property name="telephone">
+			<column name="Telephone"/>
+		</property>
+		
+		<property name="bloodGroup">
+			<column name="BloodGroup"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>

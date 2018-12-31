@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+        
+<struts>
+	
+	<package name="default" extends="struts-default">
+
+<!-- 											Interceptors -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="com.interceptor.LoginRequired"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		
+<!-- 											Global Results -->
+		<global-results>
+			<result name="login">/index.jsp</result>
+			<result name="error">/error.jsp</result>
+		</global-results>
+		
+<!-- 											Global Exceptions -->
+		<global-exception-mappings>
+		    <exception-mapping exception="java.lang.Exception" result="error" />
+		</global-exception-mappings>
+		
+<!-- 											Appointment Action -->
+		
+		<action name="addAppointment" class="com.action.AppointmentAction" method="getLastAppointment">
+        	<result name="success">/AppointmentConfirmation.jsp</result>
+        	<result name="error">/error.jsp</result>
+        	<result name="input">/AppointmentDate.jsp</result>
+        </action>
+
+		<action name="setAppointment" class="com.action.AppointmentAction">
+        	<result name="success">/Receptionist.jsp</result>
+        	<result name="error">/error.jsp</result>
+        	<result name="input">/AppointmentConfirmation.jsp</result>
+        </action>        
+        
+       	<action name="getDoctorDetails" class="com.action.AppointmentAction" method="getDoctorDates">
+        	<result name="success">/AppointmentDate.jsp</result>
+        	<result name="input">/addAppointment.jsp</result>
+        </action>
+        
+        <action name="getDoctors" class="com.action.AppointmentAction" method="autoCompleter">
+        	<result name="none">/addAppointment.jsp</result>
+        </action>
+  
+		<action name="RegisterDoctor" class="com.action.DoctorAction">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="success">/addDoctor.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+<!--         									Doctor Action -->
+        
+        <action name="doctorList" class="com.action.DoctorAction" method="autoCompleter">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="none">/editDoctor.jsp</result>
+            <result name="input">/editDoctor.jsp</result>
+        </action>
+        
+        <action name="selectDoctor" class="com.action.DoctorAction" method="doctorDetails">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="none">/editDoctor.jsp</result>
+            <result name="input">/editDoctor.jsp</result>
+        </action>
+ 
+         <action name="editDoctor" class="com.action.DoctorAction" method="editDoctorDetails">
+			<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="success">/editDoctor.jsp</result>
+            <result name="input">/editDoctor.jsp</result>
+        </action>       
+        
+<!--         									Patient Action -->
+        
+        <action name="RegisterPatient" class="com.action.PatientAction">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="success">/addPatient.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        
+        <action name="newPatient" class="com.action.PatientAction" method="autoCompleter">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="none">/addPatient.jsp</result>
+        </action>
+        
+        <action name="patientList" class="com.action.PatientAction" method="autoCompleter">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="none">/editPatient.jsp</result>
+        </action>
+        
+        <action name="selectPatient" class="com.action.PatientAction" method="patientDetails">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="none">/editPatient.jsp</result>
+        </action>
+        
+        <action name="editPatient" class="com.action.PatientAction" method="editPatientDetails">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="success">/editPatient.jsp</result>
+            <result name="input">/editPatient.jsp</result>
+        </action>
+        
+<!--         									Login Action -->
+        
+        <action name="Login" class="com.action.LoginAction">
+            <result name="admin">/Administrator.jsp</result>
+            <result name="receptionist">/Receptionist.jsp</result>
+            <result name="input">/index.jsp</result>
+        </action>
+        
+        <action name="Logout" class="com.action.LoginAction" method="logout">
+            <result name="success">/index.jsp</result>
+        </action>
+        
+        <action name="homePage" class="com.action.LoginAction" method="checkLogin">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+            <result name="admin">/Administrator.jsp</result>
+            <result name="receptionist">/Receptionist.jsp</result>
+        </action>
+
+<!-- 											Admin Action -->
+        
+        <action name="registerEmployee" class="com.action.AdminAction">
+        	<interceptor-ref name="loginStack"></interceptor-ref>
+        	<result name="success">/addEmployee.jsp</result>
+        	<result name="input">/addEmployee.jsp</result>
+        </action>
+        
+	</package>
+</struts>

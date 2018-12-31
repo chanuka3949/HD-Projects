@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.persistence.Doctor" table="Doctor">
+	
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		
+		<property name="firstName">
+			<column name="FirstName" length="25"/>
+		</property>
+		
+		<property name="lastName">
+			<column name="LastName" length="25"/>
+		</property>
+		
+		<property name="mobile">
+			<column name="Mobile" length="25"/>
+		</property>
+		
+		<property name="medicalLicense">
+			<column name="MedicalLicense" length="25"/>
+		</property>
+		
+		<property name="appointmentCount">
+			<column name="AppointmentCount"/>
+		</property>
+		
+	</class>
+</hibernate-mapping>

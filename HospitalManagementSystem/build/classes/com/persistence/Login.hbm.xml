@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.persistence.Login" table="Login">
+	
+		<id name="id" column="ID">
+			<generator class="native"/>
+		</id>
+		
+		<property name="username">
+			<column name="USERNAME" length="10"/>
+		</property>
+
+		<property name="password">
+			<column name="PASSWORD" length="10"/>
+		</property>
+		
+		<property name="userType">
+			<column name="UserType" length="20"/>
+		</property>		
+		
+	</class>
+</hibernate-mapping>
